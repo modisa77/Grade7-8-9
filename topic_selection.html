@@ -1,0 +1,12 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Select Topic</title>
+</head>
+<body>
+    <h1>Grade {{ grade }} Topics</h1>
+    {% for topic in topics %}
+        <p><a href="{% url 'quiz_view' topic.id %}">{{ topic.name }}</a></p>
+    {% endfor %}
+</body>
+</html>

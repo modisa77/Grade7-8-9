@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ topic.name }}</title>
+</head>
+<body>
+    <h1>{{ topic.name }}</h1>
+    <form id="quizForm">
+        {% for question in questions %}
+            <div>
+                <p>{{ forloop.counter }}. {{ question.text }}</p>
+                <label><input type="radio" name="q{{ forloop.counter }}" value="A"> {{ question.option_a }}</label><br>
+                <label><input type="radio" name="q{{ forloop.counter }}" value="B"> {{ question.option_b }}</label><br>
+                <label><input type="radio" name="q{{ forloop.counter }}" value="C"> {{ question.option_c }}</label><br>
+                <label><input type="radio" name="q{{ forloop.counter }}" value="D"> {{ question.option_d }}</label><br>
+                <div id="exp{{ forloop.counter }}" style="display:none; color:blue;"></div>
+                <hr>
+            </div>
+        {% endfor %}
+        <button type="button" onclick="checkAnswers()">Submit</button>
+    </form>
+
+    <script>
+        function checkAnswers() {
+            {% for question in questions %}
+                let selected = document.querySelector('input[name="q{{ forloop.counter }}"]:checked');
+                let expDiv = document.getElementById("exp{{ forloop.counter }}");
+                if (selected) {
+                    if (selected.value === "{{ question.correct_answer }}") {
+                        expDiv.innerHTML = "✅ Correct!<br><b>Solution:</b> {{ question.solution|escapejs }}";
+                    } else {
+                        let expl = {
+                            "A": "{{ question.explanation_a|escapejs }}",
+                            "B": "{{ question.explanation_b|escapejs }}",
+                            "C": "{{ question.explanation_c|escapejs }}",
+                            "D": "{{ question.explanation_d|escapejs }}",
+                        };
+                        expDiv.innerHTML = "❌ Incorrect. " + expl[selected.value] + "<br><b>Solution:</b> {{ question.solution|escapejs }}";
+                    }
+                    expDiv.style.display = "block";
+                }
+            {% endfor %}
+        }
+    </script>
+</body>
+</html>

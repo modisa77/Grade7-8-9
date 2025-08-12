@@ -1,0 +1,25 @@
+[
+    {
+        "model": "mathapp.topic",
+        "pk": 1,
+        "fields": {"grade": 8, "name": "Algebra Basics"}
+    },
+    {
+        "model": "mathapp.question",
+        "pk": 1,
+        "fields": {
+            "topic": 1,
+            "text": "Simplify: 2x + 3x",
+            "option_a": "5x",
+            "option_b": "6x",
+            "option_c": "x^5",
+            "option_d": "x + 5",
+            "correct_answer": "A",
+            "explanation_a": "Correct! Adding like terms gives 5x.",
+            "explanation_b": "Incorrect, you added incorrectly.",
+            "explanation_c": "Incorrect, x^5 is multiplication of x, not addition.",
+            "explanation_d": "Incorrect, x + 5 is not the sum of 2x and 3x.",
+            "solution": "2x + 3x = (2 + 3)x = 5x."
+        }
+    }
+]

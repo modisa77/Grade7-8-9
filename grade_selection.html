@@ -1,0 +1,12 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Select Grade</title>
+</head>
+<body>
+    <h1>Select Grade</h1>
+    {% for grade in grades %}
+        <p><a href="{% url 'topic_selection' grade %}">Grade {{ grade }}</a></p>
+    {% endfor %}
+</body>
+</html>
